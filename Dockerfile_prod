@@ -1,0 +1,13 @@
+FROM node:lts
+
+WORKDIR /code
+
+ADD package.json .
+RUN npm install --production
+
+ADD config config
+ADD priv priv
+ADD src src
+ADD knexfile.js knexfile.js
+
+CMD ["node", "src/index.js"]

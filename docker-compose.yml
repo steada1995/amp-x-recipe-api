@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    command: ./node_modules/.bin/nodemon src/index.js
+    volumes:
+      - .:/data
+    working_dir: /data
+    environment:
+      - NODE_ENV=development
+  db:
+    platform: linux/x86_64 # non utilizzarlo se non usi arm
+    image: mysql:5.7
+    ports:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
